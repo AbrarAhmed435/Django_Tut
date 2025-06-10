@@ -4,3 +4,5 @@ from django.http import HttpResponse
 
 def register_home(request):
     return render(request,'register_home.html')
+
+#Hello
