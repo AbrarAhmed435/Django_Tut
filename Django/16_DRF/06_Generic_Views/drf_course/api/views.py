@@ -44,13 +44,47 @@ class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset=Order.objects.prefetch_related('items__product').all()
     serializer_class=OrderSerializer """
 class UserOrderListAPIView(generics.ListAPIView):
-    queryset=Order.objects.prefetch_related('items__product').all()
-    serializer_class=OrderSerializer
-    
+    """
+    Returns a list of Order objects that belong to the **currently
+    authenticated user**.
+
+    Why a dedicated view?
+    ─────────────────────
+    • Keeps the endpoint simple—no need for the client to supply
+      `?user=id` every time.
+    • Prevents accidental data leaks by enforcing user-level filtering
+      on the server side.
+    """
+    # ------------------------------------------------------------------
+    # Base queryset
+    # ------------------------------------------------------------------
+    # 1. `prefetch_related('items__product')` grabs all OrderItems and
+    #    their associated Product objects in one additional query,
+    #    eliminating the N+1 problem when the serializer dereferences
+    #    `order.items` and `item.product`.
+    # 2. `.all()` materializes the QuerySet so we can start chaining
+    #    further filters safely.
+    queryset = (
+        Order.objects
+             .prefetch_related('items__product')
+             .all()
+    )
+
+    # Serializer that converts Order instances → JSON
+    serializer_class = OrderSerializer
+
+    # ------------------------------------------------------------------
+    # Custom queryset logic
+    # ------------------------------------------------------------------
     def get_queryset(self):
-        user=self.request.user
-        qs=super().get_queryset()
-        return qs.filter(user=user)
+        """
+        Override the default `get_queryset()` to scope results to the
+        request’s user while preserving all optimizations defined in
+        the base queryset.
+        """
+        user = self.request.user                 # The logged-in user
+        qs   = super().get_queryset()            # Reuse base queryset
+        return qs.filter(user=user)              # Apply user filter
     
 
     
