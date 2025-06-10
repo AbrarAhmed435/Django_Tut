@@ -7,7 +7,7 @@ class User(AbstractUser):
     pass  # Currently no extra fields; can be extended later
 
 
-# Product model to represent items that can be ordered
+# #Product model to represent items that can be ordered
 class Product(models.Model):
     name = models.CharField(max_length=100)  # Product name, max length 100 chars
     description = models.TextField()  # Detailed description of the product
