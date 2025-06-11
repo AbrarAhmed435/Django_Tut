@@ -6,6 +6,7 @@ from api.models import Product,Order,OrderItem
 from rest_framework.decorators import api_view  # To define function-based API views
 from rest_framework.response import Response  # A DRF response class that renders data as JSON
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 
 
 # views.py
@@ -72,7 +73,7 @@ class UserOrderListAPIView(generics.ListAPIView):
 
     # Serializer that converts Order instances → JSON
     serializer_class = OrderSerializer
-    #permission_classes = 
+    permission_classes = [IsAuthenticated] 
 
     # ------------------------------------------------------------------
     # Custom queryset logic
