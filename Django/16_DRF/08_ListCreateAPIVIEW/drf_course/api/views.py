@@ -15,26 +15,24 @@ from rest_framework import generics          # DRF’s generic class-based views
 from .models import Product                  # Your Product model
 from .serializers import ProductSerializer   # Converts Product objects → JSON
 
-class ProductListAPIView(generics.ListAPIView):
-    """
-    Returns a paginated list of all Product objects.
 
-    ⬇️  Why ListAPIView?
-    • Handles only HTTP GET by default (read-only list)
-    • Automatically wires in pagination, filter back-ends, and ordering
-      if you’ve configured them in your REST_FRAMEWORK settings
-    """
-
-    # 🔍  Which records to fetch from the database?
-    #     A lazily-evaluated Django QuerySet.  Change or override get_queryset()
-    #     if you ever need user-specific or filtered results.
-    queryset=Product.objects.filter(stock__gt=0) # return only if stock >0
-    #queryset=Product.objects.exclude(stock__gt=0) #only out of stock product
-    # 📦  Which serializer turns each Product instance into JSON?
-    #     Also used for validation on write-endpoints (not needed here,
-    #     but still required by DRF’s generic view contract).
-    serializer_class = ProductSerializer
-
+""" 
+=================================
+= Post request to create product =
+==================================
+"""
+""" class PoductCreateAPIView(generics.CreateAPIView):
+    model=Product
+    serializer_class=ProductSerializer #reusing Product serilizer as it is similary 
+    
+    def create(self,request,*args,**kwargs):
+        print(request.data)
+        return super().create(request,*args,**kwargs) #calls actual creat method https://www.cdrf.co/
+         """
+    
+class ProductListCreateAPIView(generics.ListCreateAPIView): #create and Read with same class
+    queryset=Product.objects.all()
+    serializer_class=ProductSerializer
 
 class ProductDetailAPIView(generics.RetrieveAPIView):
     queryset=Product.objects.all()
