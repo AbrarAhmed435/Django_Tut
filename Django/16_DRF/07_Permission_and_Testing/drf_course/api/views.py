@@ -72,6 +72,7 @@ class UserOrderListAPIView(generics.ListAPIView):
 
     # Serializer that converts Order instances → JSON
     serializer_class = OrderSerializer
+    #permission_classes = 
 
     # ------------------------------------------------------------------
     # Custom queryset logic
