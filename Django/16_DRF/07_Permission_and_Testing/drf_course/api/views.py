@@ -7,6 +7,7 @@ from rest_framework.decorators import api_view  # To define function-based API v
 from rest_framework.response import Response  # A DRF response class that renders data as JSON
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.views import APIView
 
 
 # views.py
@@ -89,9 +90,15 @@ class UserOrderListAPIView(generics.ListAPIView):
         return qs.filter(user=user)              # Apply user filter
     
 
+    """ Generic views like ListAPIView are great when you're returning just a list of model instances, 
+    If your output is not just a flat list but a custom structure (dicts, summaries, aggregations, mixes of multiple models), then APIView or @api_view gives you full control over the response structure.
     
-@api_view(['GET'])
-def product_info(request):
+    ListAPIView:	You want to return a list of a single model’s objects
+    APIView: You want to return a custom structure, aggregate values, or mix data
+    """
+
+class ProductInfoAPIView(APIView):
+  def get(self,request):
     products=Product.objects.all()
     serializer=ProductInfoSerializer({
         'products':products,
@@ -99,3 +106,14 @@ def product_info(request):
         'max_price':products.aggregate(max_price=Max('price'))['max_price']
     })
     return Response(serializer.data)
+    
+    
+""" @api_view(['GET'])
+def product_info(request):
+    products=Product.objects.all()
+    serializer=ProductInfoSerializer({
+        'products':products,
+        'count':len(products),
+        'max_price':products.aggregate(max_price=Max('price'))['max_price']
+    })
+    return Response(serializer.data) """
