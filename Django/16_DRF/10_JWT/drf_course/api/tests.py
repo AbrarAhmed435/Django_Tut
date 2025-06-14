@@ -48,4 +48,5 @@ class userOrderTestCase(TestCase):
         
         # Expecting HTTP 403 Forbidden (you may get 401 if using custom permissions)
         #self.assertEqual(response.status_code, 403)
-        self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN) #much readable
+        #self.assertEqual(response.status_code, status.HTTP_403_FORBIDDEN) #much readable
+        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED) 
