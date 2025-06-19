@@ -135,7 +135,7 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
     ]
 }
-
+""" https://django-rest-framework-simplejwt.readthedocs.io/en/latest/settings.html """
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(seconds=20),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
