@@ -72,7 +72,6 @@ class OrderSerializer(serializers.ModelSerializer):
         order_items = obj.items.all()
         return round(sum(order_item.item_subtotal for order_item in order_items), 2)
 
-
     class Meta:
         model = Order
         fields = ["order_id", "created_at", "user", "status", "items",'total_price']

@@ -3,7 +3,7 @@ GET http://localhost:8000/products/ HTTP/1.1
 
 POST http://localhost:8000/products/ HTTP/1.1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5OTE5NjUxLCJpYXQiOjE3NDk5MTk2MzEsImp0aSI6IjdmMWFlZjQxZmVhMjQwODhhY2Y0NTU2ZDVjMmFlYWU2IiwidXNlcl9pZCI6Mn0._NthvJ_0QaKPwkUKrz0XcspU7FKdxgYp4P6Tf4tnR2s
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMzMyNTU2LCJpYXQiOjE3NTAzMzI1MDYsImp0aSI6ImU3ZGQ0Y2FmYmI4ZTQ4ODVhZjczODhmNjFmYWU4Y2JiIiwidXNlcl9pZCI6MX0.XUvwVIdYmTwZtLmt_My65DT3MUFJQ1y5INVnxHAGcsY
 
 {
     "name":"Chair",
@@ -17,14 +17,14 @@ POST http://localhost:8000/api/token/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "username":"abrar",
-    "password":"AbrarDjango@435"
+    "username":"admin",
+    "password":"test"
 }
 
 ###
 
 GET http://localhost:8000/user-orders/ HTTP/1.1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzQ5OTE5NzU5LCJpYXQiOjE3NDk5MTk3MzksImp0aSI6IjMxZTBlNzI4NDFjZDQzOWY4ZjlmZjg3YjljODc0YjVmIiwidXNlcl9pZCI6Mn0.1gwDpUr7FMRu32A7vyJlg73cmqp6XJUB29BankPn_AE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzUwMzMyNDQ5LCJpYXQiOjE3NTAzMzIzOTksImp0aSI6ImY1YzlkM2Q4YjIzZTQ0MzBhZTNmMzNiY2YxZTgwZDY5IiwidXNlcl9pZCI6Mn0.Kv6G1_ziMqvg_bSj8niSi9aurhVseg9gdi-x5uS47J4
 
 
 ###
@@ -33,5 +33,5 @@ POST http://localhost:8000/api/token/refresh/ HTTP/1.1
 Content-Type: application/json
 
 {
-    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDAwNTQ1OCwiaWF0IjoxNzQ5OTE5MDU4LCJqdGkiOiI4YjZjN2IzZjE0MTM0ZWNmOWMzYWUwODVlMDAzODRjYSIsInVzZXJfaWQiOjJ9.k9csnqKTwPLFQr70R0n4dufmLdFF9pw22aPx9Zxi0WA"
+    "refresh":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc1MDQxODg1MCwiaWF0IjoxNzUwMzMyNDUwLCJqdGkiOiJiMjVlMmI1YjkzY2Y0Y2E1OWNhZDZiNTI0NDg0YWM5YiIsInVzZXJfaWQiOjJ9.97wsJjpYWWUqZvUpodhJmUL5dBSuCD4MrfLmNo9dJc0"
 }
