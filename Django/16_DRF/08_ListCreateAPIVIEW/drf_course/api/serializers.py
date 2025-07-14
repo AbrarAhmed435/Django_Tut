@@ -27,7 +27,7 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         # Explicit list keeps the API surface predictable
-        fields = ['id',"description", "name", "description", "price", "stock"]
+        fields = ["description", "name", "description", "price", "stock"]
 
     # ---- Field‑level validation ------------------------------------------------
     def validate_price(self, value):
